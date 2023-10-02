@@ -304,13 +304,151 @@
               <li>Angry: <span id="angryCount">0</span></li>
           </ul>
         </div>
-      
 
-        <!-- JavaScript -->
-        <!-- Include the third-party scripts -->
-        <script src="https://sdk.morphcast.com/mphtools/v1.1/mphtools.js" data-config="compatibilityUI, compatibilityAutoCheck"></script>
-        <script src="https://ai-sdk.morphcast.com/v1.16/ai-sdk.js"></script>
-        <script>
+              <!-- Overlay -->
+
+    <!-- / Layout wrapper -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="../assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+    <!-- Main JS -->
+    <script src="../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script src="../assets/js/dashboards-analytics.js"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
+      import { getDatabase, ref, set, get, update } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+      import { getAuth, signOut, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"; // Import Firebase Authentication
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyD61AGO2ZR8plHMvFUCLrCiCe9pB57XaB8",
+        authDomain: "login-capstone-d6ae0.firebaseapp.com",
+        databaseURL:"https://login-capstone-d6ae0-default-rtdb.asia-southeast1.firebasedatabase.app/",
+        projectId: "login-capstone-d6ae0",
+        storageBucket: "login-capstone-d6ae0.appspot.com",
+        messagingSenderId: "864644609365",
+        appId: "1:864644609365:web:e8759207e02745ed83ebdc",
+        measurementId: "G-TQP6RYWEG7"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const database = getDatabase(app);
+      const auth = getAuth(); // Initialize Firebase Authentication
+      const user = auth.currentUser;
+
+      document.getElementById("logout").addEventListener("click", () => {
+
+      // Sign out the current user
+        signOut(auth)
+          .then(() => {
+            // Sign-out successful.
+            // You can redirect the user to a sign-in page or perform other actions here.
+            console.log("User signed out.");
+            window.location.href = "auth-login-basic.html"; // Redirect to the login page (replace with your desired URL)
+          })
+          .catch((error) => {
+            // An error happened.
+            console.error("Error signing out:", error);
+          });
+      });
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          const userName = user.displayName;
+          const userEmail = user.email;
+          const userDisplay = document.getElementById("userDisplay");
+          const userNameDisplay = userDisplay.querySelector("#userNameDisplay");
+          const userEmailDisplay = userDisplay.querySelector("#userEmailDisplay"); // Add this line
+          const userPhotoURL = user.photoURL;
+          const userPhotoDisplay = document.getElementById("userPhotoDisplay");
+          const userPhotoDisplay1 = document.getElementById("userPhotoDisplay1");
+
+          if (userName) {
+            userNameDisplay.textContent = userName;
+          } else if (userEmail) {
+            const atIndex = userEmail.indexOf("@");
+            if (atIndex !== -1) {
+              const emailPrefix = userEmail.substring(0, atIndex);
+              userNameDisplay.textContent = emailPrefix;
+            } else {
+              userNameDisplay.textContent = userEmail;
+            }
+          }
+          if (userEmailDisplay) {
+            // Display the user's email
+            userEmailDisplay.textContent = userEmail;
+          }
+          if (userPhotoURL) {
+            // Display the Firebase profile picture if available
+            if (userPhotoDisplay) {
+              userPhotoDisplay.src = userPhotoURL;
+            }
+            if (userPhotoDisplay1) {
+              userPhotoDisplay1.src = userPhotoURL;
+            }
+          } else {
+            // User's Firebase profile picture is not available, try to fetch Google profile picture
+            const googleProfilePicture = user.providerData.find((provider) => {
+              return provider.providerId === "google.com";
+            }).photoURL;
+
+            if (userPhotoDisplay && googleProfilePicture) {
+              userPhotoDisplay.src = googleProfilePicture; // Display Google profile picture
+            }
+            if (userPhotoDisplay1 && googleProfilePicture) {
+              userPhotoDisplay1.src = googleProfilePicture; // Display Google profile picture
+            }
+          }
+        } else {
+          // No user is signed in, redirect to the login page
+          window.location.href = "auth-login-basic.html"; // Replace with your login page URL
+        }
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+          const themeSelectors = document.querySelectorAll(".theme-selector");
+
+          themeSelectors.forEach((selector) => {
+              selector.addEventListener("click", function () {
+                  const selectedTheme = this.getAttribute("data-theme");
+
+                  // Apply the selected theme by adding a class to the <body> element
+                  document.body.classList.remove("light-theme", "dark-theme");
+
+                  if (selectedTheme === "light") {
+                      document.body.classList.add("light-theme");
+                  } else if (selectedTheme === "dark") {
+                      document.body.classList.add("dark-theme");
+                  }
+
+                  // Optionally, you can store the user's preference in a cookie or local storage
+                  // so that it persists across page loads.
+
+                  // For the "system" theme, you can use CSS media queries to automatically
+                  // adapt to the user's system-wide theme preference.
+              });
+          });
+      });
+
         const cameraSource = CY.createSource.fromCamera({
           constraints: {
             audio: false,
@@ -539,152 +677,30 @@
                 updateEmotionData(dominantEmotion);
                 updateUI();
                 canRecordEmotion = false; // Prevent recording for the next 5 seconds
+                
+                // Update the counts in Firebase Realtime Database
+                updateFirebaseEmotionCounts(emotionData);
             }
         });
+        
+        // Function to update the emotion counts in Firebase
+        function updateFirebaseEmotionCounts(emotionCounts) {
+          // Assuming you want to store the counts under a "emotions" node in your database
+          const emotionsRef = ref(database, "emotions");
+
+          // Update the Firebase database with the latest emotion counts
+          set(emotionsRef, emotionCounts, (error) => {
+            if (error) {
+              console.error("Error updating Firebase:", error);
+            } else {
+              console.log("Emotion counts updated in Firebase:", emotionCounts);
+            }
+          });
+        }
 
 
         </script>
-
-              <!-- Overlay -->
-
-    <!-- / Layout wrapper -->
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../assets/vendor/js/bootstrap.js"></script>
-    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <script src="../assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
-
-    <!-- Main JS -->
-    <script src="../assets/js/main.js"></script>
-
-    <!-- Page JS -->
-    <script src="../assets/js/dashboards-analytics.js"></script>
-
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
-      import { getAuth, signOut, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"; // Import Firebase Authentication
-
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      const firebaseConfig = {
-        apiKey: "AIzaSyD61AGO2ZR8plHMvFUCLrCiCe9pB57XaB8",
-        authDomain: "login-capstone-d6ae0.firebaseapp.com",
-        projectId: "login-capstone-d6ae0",
-        storageBucket: "login-capstone-d6ae0.appspot.com",
-        messagingSenderId: "864644609365",
-        appId: "1:864644609365:web:e8759207e02745ed83ebdc",
-        measurementId: "G-TQP6RYWEG7"
-      };
-
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-      const auth = getAuth(); // Initialize Firebase Authentication
-      const user = auth.currentUser;
-
-      document.getElementById("logout").addEventListener("click", () => {
-
-      // Sign out the current user
-        signOut(auth)
-          .then(() => {
-            // Sign-out successful.
-            // You can redirect the user to a sign-in page or perform other actions here.
-            console.log("User signed out.");
-            window.location.href = "auth-login-basic.html"; // Redirect to the login page (replace with your desired URL)
-          })
-          .catch((error) => {
-            // An error happened.
-            console.error("Error signing out:", error);
-          });
-      });
-      auth.onAuthStateChanged((user) => {
-  if (user) {
-    const userName = user.displayName;
-    const userEmail = user.email;
-    const userDisplay = document.getElementById("userDisplay");
-    const userNameDisplay = userDisplay.querySelector("#userNameDisplay");
-    const userEmailDisplay = userDisplay.querySelector("#userEmailDisplay"); // Add this line
-    const userPhotoURL = user.photoURL;
-    const userPhotoDisplay = document.getElementById("userPhotoDisplay");
-    const userPhotoDisplay1 = document.getElementById("userPhotoDisplay1");
-
-    if (userName) {
-      userNameDisplay.textContent = userName;
-    } else if (userEmail) {
-      const atIndex = userEmail.indexOf("@");
-      if (atIndex !== -1) {
-        const emailPrefix = userEmail.substring(0, atIndex);
-        userNameDisplay.textContent = emailPrefix;
-      } else {
-        userNameDisplay.textContent = userEmail;
-      }
-    }
-    if (userEmailDisplay) {
-      // Display the user's email
-      userEmailDisplay.textContent = userEmail;
-    }
-    if (userPhotoURL) {
-      // Display the Firebase profile picture if available
-      if (userPhotoDisplay) {
-        userPhotoDisplay.src = userPhotoURL;
-      }
-      if (userPhotoDisplay1) {
-        userPhotoDisplay1.src = userPhotoURL;
-      }
-    } else {
-      // User's Firebase profile picture is not available, try to fetch Google profile picture
-      const googleProfilePicture = user.providerData.find((provider) => {
-        return provider.providerId === "google.com";
-      }).photoURL;
-
-      if (userPhotoDisplay && googleProfilePicture) {
-        userPhotoDisplay.src = googleProfilePicture; // Display Google profile picture
-      }
-      if (userPhotoDisplay1 && googleProfilePicture) {
-        userPhotoDisplay1.src = googleProfilePicture; // Display Google profile picture
-      }
-    }
-  } else {
-    // No user is signed in, redirect to the login page
-    window.location.href = "auth-login-basic.html"; // Replace with your login page URL
-  }
-});
-document.addEventListener("DOMContentLoaded", function () {
-    const themeSelectors = document.querySelectorAll(".theme-selector");
-
-    themeSelectors.forEach((selector) => {
-        selector.addEventListener("click", function () {
-            const selectedTheme = this.getAttribute("data-theme");
-
-            // Apply the selected theme by adding a class to the <body> element
-            document.body.classList.remove("light-theme", "dark-theme");
-
-            if (selectedTheme === "light") {
-                document.body.classList.add("light-theme");
-            } else if (selectedTheme === "dark") {
-                document.body.classList.add("dark-theme");
-            }
-
-            // Optionally, you can store the user's preference in a cookie or local storage
-            // so that it persists across page loads.
-
-            // For the "system" theme, you can use CSS media queries to automatically
-            // adapt to the user's system-wide theme preference.
-        });
-    });
-});
-    </script>
+        <script src="https://sdk.morphcast.com/mphtools/v1.1/mphtools.js" data-config="compatibilityUI, compatibilityAutoCheck"></script>
+        <script src="https://ai-sdk.morphcast.com/v1.16/ai-sdk.js"></script>
   </body>
 </html>

@@ -617,7 +617,7 @@
       const emailInput = document.getElementById("email");
 
       const userRef = ref(database, `users/${user.uid}`);
-      get(userRef)
+      get(userRef)  
         .then((snapshot) => {
           const userData = snapshot.val();
           populateFormFields(userData);
