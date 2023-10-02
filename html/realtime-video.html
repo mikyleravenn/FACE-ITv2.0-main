@@ -683,21 +683,40 @@
             }
         });
         
-        // Function to update the emotion counts in Firebase
-        function updateFirebaseEmotionCounts(emotionCounts) {
-          // Assuming you want to store the counts under a "emotions" node in your database
-          const emotionsRef = ref(database, "emotions");
+       // Function to update the emotion counts in Firebase Realtime Database with timestamps per day
+      function updateFirebaseEmotionCounts(emotionCounts) {
+        // Get the user's Firebase email
+        const userEmail = auth.currentUser.email;
 
-          // Update the Firebase database with the latest emotion counts
-          set(emotionsRef, emotionCounts, (error) => {
-            if (error) {
-              console.error("Error updating Firebase:", error);
-            } else {
-              console.log("Emotion counts updated in Firebase:", emotionCounts);
-            }
+        // Remove the "@gmail.com" portion from the email
+        const emailWithoutDomain = userEmail.split('@')[0];
+
+        // Reference to the database
+        const database = getDatabase(app);
+
+        // Get the current date
+        const currentDate = new Date();
+
+        // Convert the date to a string in the format "YYYY-MM-DD"
+        const dateString = currentDate.toISOString().split('T')[0];
+
+        // Reference to the database node with the current date as the parent node
+        const dateRef = ref(database, dateString + "/" + userEmail.split('@')[0]);
+
+        // Create an object that includes both the date and emotion counts
+        const emotionData = {
+          emotions: emotionCounts
+        };
+
+        // Update the Firebase database with the emotion counts under the current date
+        set(dateRef, emotionData)
+          .then(() => {
+            console.log("Emotion counts updated in Firebase for date:", dateString);
+          })
+          .catch((error) => {
+            console.error("Error updating Firebase:", error);
           });
-        }
-
+      }
 
         </script>
         <script src="https://sdk.morphcast.com/mphtools/v1.1/mphtools.js" data-config="compatibilityUI, compatibilityAutoCheck"></script>
