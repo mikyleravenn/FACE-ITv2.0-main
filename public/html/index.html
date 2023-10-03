@@ -88,7 +88,7 @@
           <li class="menu-item">
             <a href="realtime-video.html" class="menu-link">
               <i class="menu-icon tf-icons bx bx-video"></i>
-              <div data-i18n="Container">Real-time Video</div>
+              <div data-i18n="Container">Realtime-Video</div>
             </a>
           </li>
 
@@ -318,7 +318,8 @@
                 <div class="card">
                   <div class="row row-bordered g-0">
                     <div class="col-md-8">
-                      <canvas id="emotionChart" width="400" height="400"></canvas>
+                      <h5 class="card-header m-0 me-2 pb-3">Total Revenue</h5>
+                      <div id="totalRevenueChart" class="px-2"></div>
                     </div>
                     <div class="col-md-4">
                       <div class="card-body">
@@ -768,9 +769,6 @@
   <!-- Page JS -->
   <script src="../assets/js/dashboards-analytics.js"></script>
 
-  <!-- Chart JS -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script type="module">
@@ -778,14 +776,12 @@
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
       import { getAuth, signOut, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"; // Import Firebase Authentication
-      import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js';
 
       // Your web app's Firebase configuration
       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
       const firebaseConfig = {
         apiKey: "AIzaSyD61AGO2ZR8plHMvFUCLrCiCe9pB57XaB8",
         authDomain: "login-capstone-d6ae0.firebaseapp.com",
-        databaseURL:"https://login-capstone-d6ae0-default-rtdb.asia-southeast1.firebasedatabase.app/",
         projectId: "login-capstone-d6ae0",
         storageBucket: "login-capstone-d6ae0.appspot.com",
         messagingSenderId: "864644609365",
@@ -796,7 +792,6 @@
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const analytics = getAnalytics(app);
-      const database = getDatabase(app);
       const auth = getAuth(); // Initialize Firebase Authentication
       const user = auth.currentUser;
 
@@ -815,131 +810,64 @@
             console.error("Error signing out:", error);
           });
       });
-
       auth.onAuthStateChanged((user) => {
-        if (user) {
-          const userName = user.displayName;
-          const userEmail = user.email;
-          const userDisplay = document.getElementById("userDisplay");
-          const userNameDisplay = userDisplay.querySelector("#userNameDisplay");
-          const userEmailDisplay = userDisplay.querySelector("#userEmailDisplay"); // Add this line
-          const userPhotoURL = user.photoURL;
-          const userPhotoDisplay = document.getElementById("userPhotoDisplay");
-          const userPhotoDisplay1 = document.getElementById("userPhotoDisplay1");
+  if (user) {
+    const userName = user.displayName;
+    const userEmail = user.email;
+    const userDisplay = document.getElementById("userDisplay");
+    const userNameDisplay = userDisplay.querySelector("#userNameDisplay");
+    const userEmailDisplay = userDisplay.querySelector("#userEmailDisplay"); // Add this line
+    const userPhotoURL = user.photoURL;
+    const userPhotoDisplay = document.getElementById("userPhotoDisplay");
+    const userPhotoDisplay1 = document.getElementById("userPhotoDisplay1");
 
-          if (userName) {
-            userNameDisplay.textContent = userName;
-          } else if (userEmail) {
-            const atIndex = userEmail.indexOf("@");
-            if (atIndex !== -1) {
-              const emailPrefix = userEmail.substring(0, atIndex);
-              userNameDisplay.textContent = emailPrefix;
-            } else {
-              userNameDisplay.textContent = userEmail;
-            }
-          }
-          if (userEmailDisplay) {
-            // Display the user's email
-            userEmailDisplay.textContent = userEmail;
-          }
-          if (userPhotoURL) {
-            // Display the Firebase profile picture if available
-            if (userPhotoDisplay) {
-              userPhotoDisplay.src = userPhotoURL;
-            }
-            if (userPhotoDisplay1) {
-              userPhotoDisplay1.src = userPhotoURL;
-            }
-          } else {
-            // User's Firebase profile picture is not available, try to fetch Google profile picture
-            const googleProfilePicture = user.providerData.find((provider) => {
-              return provider.providerId === "google.com";
-            }).photoURL;
+    if (userName) {
+      userNameDisplay.textContent = userName;
+    } else if (userEmail) {
+      const atIndex = userEmail.indexOf("@");
+      if (atIndex !== -1) {
+        const emailPrefix = userEmail.substring(0, atIndex);
+        userNameDisplay.textContent = emailPrefix;
+      } else {
+        userNameDisplay.textContent = userEmail;
+      }
+    }
+    if (userEmailDisplay) {
+      // Display the user's email
+      userEmailDisplay.textContent = userEmail;
+    }
+    if (userPhotoURL) {
+      // Display the Firebase profile picture if available
+      if (userPhotoDisplay) {
+        userPhotoDisplay.src = userPhotoURL;
+      }
+      if (userPhotoDisplay1) {
+        userPhotoDisplay1.src = userPhotoURL;
+      }
+    } else {
+      // User's Firebase profile picture is not available, try to fetch Google profile picture
+      const googleProfilePicture = user.providerData.find((provider) => {
+        return provider.providerId === "google.com";
+      }).photoURL;
 
-            if (userPhotoDisplay && googleProfilePicture) {
-              userPhotoDisplay.src = googleProfilePicture; // Display Google profile picture
-            }
-            if (userPhotoDisplay1 && googleProfilePicture) {
-              userPhotoDisplay1.src = googleProfilePicture; // Display Google profile picture
-            }
-          }
-          const userFirstName = userName.split(' ')[0]; // Assuming the display name contains both first and last names
-          const greetingElement = document.getElementById('greeting');
+      if (userPhotoDisplay && googleProfilePicture) {
+        userPhotoDisplay.src = googleProfilePicture; // Display Google profile picture
+      }
+      if (userPhotoDisplay1 && googleProfilePicture) {
+        userPhotoDisplay1.src = googleProfilePicture; // Display Google profile picture
+      }
+    }
+    const userFirstName = userName.split(' ')[0]; // Assuming the display name contains both first and last names
+    const greetingElement = document.getElementById('greeting');
 
-          if (greetingElement) {
-            greetingElement.textContent = `Congratulations, ${userFirstName}! 🎉`;
-          }
-        } else {
-          // No user is signed in, redirect to the login page
-          window.location.href = "auth-login-basic.html"; // Replace with your login page URL
-        }
-
-      // Get the user's Firebase email
-      const userEmail = auth.currentUser.email;
-
-      // Get the current date
-      const currentDate = new Date();
-
-      // Convert the date to a string in the format "YYYY-MM-DD"
-      const dateString = currentDate.toISOString().split('T')[0];
-
-      // Get a reference to the data path where your emotion data is stored
-      const dataRef = ref(database, `${dateString}/${userEmail.split('@')[0]}`); // Replace with your data path
-
-      // Create an empty Chart.js chart instance
-      const ctx = document.getElementById('emotionChart').getContext('2d');
-      const doughnutChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Angry', 'Happy', 'Neutral'],
-                datasets: [
-                    {
-                        label: 'Emotions',
-                        data: [0, 0, 0],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.5)',
-                            'rgba(54, 162, 235, 0.5)',
-                            'rgba(255, 206, 86, 0.5)',
-                        ],
-                    },
-                ],
-            },
-        });
-
-        onValue(dataRef, (snapshot) => {
-            const data = snapshot.val();
-            if (data) {
-                // Update the chart data based on the emotions
-                const emotionCounts = {
-                    Angry: data.Angry || 0,
-                    Happy: data.Happy || 0,
-                    Neutral: data.Neutral || 0,
-                };
-
-                const emotionValues = Object.values(emotionCounts);
-                doughnutChart.data.datasets[0].data = emotionValues;
-                doughnutChart.update();
-            }
-        });
-
-      // Set up a real-time listener to update the chart when data changes
-      onValue(dataRef, (snapshot) => {
-        const data = snapshot.val(); // Retrieve the data from Firebase
-
-        if (data) {
-          // Update labels and data for the chart
-          const emotionLabels = Object.keys(data);
-          const emotionValues = Object.values(data);
-
-          doughnutChart.data.labels = emotionLabels;
-          doughnutChart.data.datasets[0].data = emotionValues;
-
-          // Update the chart
-          doughnutChart.update();
-        }
-      });
-    });
-
+    if (greetingElement) {
+      greetingElement.textContent = `Congratulations, ${userFirstName}! 🎉`;
+    }
+  } else {
+    // No user is signed in, redirect to the login page
+    window.location.href = "auth-login-basic.html"; // Replace with your login page URL
+  }
+});
     </script>
 </body>
 

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
+  data-template="vertical-menu-template-free">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+  <title>FACE-IT | My Profile</title>
+
+  <meta name="description" content="" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon/logofinal.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icons. Uncomment required icon fonts -->
+  <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+  <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+  <link rel="stylesheet" href="../assets/css/demo.css" />
+
+  <!-- Vendors CSS -->
+  <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+  <!-- Page CSS -->
+
+  <!-- Helpers -->
+  <script src="../assets/vendor/js/helpers.js"></script>
+
+  <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+  <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+  <script src="../assets/js/config.js"></script>
+</head>
+
+<body>
+  <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <!-- Menu -->
+
+      <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+        <div class="app-brand demo">
+          <a href="index.html" class="app-brand-link">
+            <span class="app-brand-logo demo">
+              <a href="index.html" class="app-brand-link">
+                <span class="app-brand-logo demo">
+                  <img src="../assets/img/favicon/logofinal.png" style="width: 40px;">
+                </span>
+              </a>
+
+              <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+                <i class="bx bx-chevron-left bx-sm align-middle"></i>
+              </a>
+            </span>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">Face-IT</span>
+          </a>
+
+          <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+          </a>
+        </div>
+
+        <div class="menu-inner-shadow"></div>
+
+        <ul class="menu-inner py-1">
+          <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Pages</span>
+          </li>
+          <!-- Dashboard -->
+          <li class="menu-item">
+            <a href="index.html" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-stats"></i>
+              <div data-i18n="Analytics">Dashboard</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="realtime-video.html" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-video"></i>
+              <div data-i18n="Container">Realtime-Video</div>
+            </a>
+          </li>
+          <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Account</span>
+          </li>
+          <li class="menu-item active open">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-dock-top"></i>
+              <div data-i18n="Account Settings">Account Settings</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item active">
+                <a href="pages-account-profile.html" class="menu-link">
+                  <div data-i18n="Account">My Profile</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="pages-account-settings.html" class="menu-link">
+                  <div data-i18n="Notifications">Settings</div>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </aside>
+      <!-- / Menu -->
+
+      <!-- Layout container -->
+      <div class="layout-page">
+        <!-- Navbar -->
+
+        <nav
+          class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+          id="layout-navbar">
+          <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+            <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+              <i class="bx bx-menu bx-sm"></i>
+            </a>
+          </div>
+
+          <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+            <!-- Search -->
+            <div class="navbar-nav align-items-center">
+              <div class="nav-item d-flex align-items-center">
+                <i class="bx bx-search fs-4 lh-0"></i>
+                <input type="text" class="form-control border-0 shadow-none" placeholder="Search..."
+                  aria-label="Search..." />
+              </div>
+            </div>
+            <!-- /Search -->
+
+            <ul class="navbar-nav flex-row align-items-center ms-auto">
+              <!-- Place this tag where you want the button to render. -->
+              <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
+                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                  <i class="bx bx-sm bx-sun"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
+                  <li>
+                    <a class="dropdown-item" href="javascript:void(0);" data-theme="light">
+                      <span class="align-middle"><i class="bx bx-sun me-2"></i>Light</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="javascript:void(0);" data-theme="dark">
+                      <span class="align-middle"><i class="bx bx-moon me-2"></i>Dark</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
+                      <span class="align-middle"><i class="bx bx-desktop me-2"></i>System</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- User -->
+              <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                  <div class="avatar avatar-online">
+                    <img id="userPhotoDisplay" src="../assets/img/avatars/avatar.png" alt
+                      class="w-px-49 h-auto rounded-circle" />
+                  </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0 me-3">
+                          <div class="avatar avatar-online">
+                            <img id="userPhotoDisplay1" src="../assets/img/avatars/avatar.png" alt
+                              class="w-px-45 h-auto rounded-circle" />
+                          </div>
+                        </div>
+                        <div class="flex-grow-1" id="userDisplay">
+                          <span class="fw-semibold d-block" id="userNameDisplay"></span>
+                          <small class="text-muted" id="userEmailDisplay"></small>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <div class="dropdown-divider"></div>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="pages-account-profile.html">
+                      <i class="bx bx-user me-2"></i>
+                      <span class="align-middle">My Profile</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="pages-account-settings.html">
+                      <i class="bx bx-cog me-2"></i>
+                      <span class="align-middle">Settings</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      <span>
+                        <i class="bx bx-help-circle me-2"></i>
+                        <span class="align-middle">About Us</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <div class="dropdown-divider"></div>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" id="logout" style="cursor: pointer;">
+                      <i class="bx bx-power-off me-2"></i>
+                      <span class="align-middle">Log Out</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!--/ User -->
+            </ul>
+          </div>
+        </nav>
+
+        <!-- / Navbar -->
+
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+          <!-- Content -->
+
+          <div class="container-xxl flex-grow-1 container-p-y">
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Account Settings /</span> My Profile</h4>
+
+            <div class="row">
+              <div class="col-md-12">
+                <ul class="nav nav-pills flex-column flex-md-row mb-3">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i> My Profile</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="pages-account-settings.html"><i class="bx bx-cog me-1"></i> Settings</a>
+                  </li>
+                </ul>
+                <div class="card mb-4">
+                  <h5 class="card-header">Profile Details</h5>
+                  <!-- Account -->
+                  <div class="card-body">
+                    <div class="d-flex align-items-start align-items-sm-center gap-4">
+                      <img src="../assets/img/avatars/avatar.png" alt="user-avatar" class="d-block rounded" height="100"
+                        width="100" id="userPhotoDisplay2" />
+                      <div class="button-wrapper">
+                        <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                          <span class="d-none d-sm-block">Upload new photo</span>
+                          <i class="bx bx-upload d-block d-sm-none"></i>
+                          <input type="file" id="upload" class="account-file-input" hidden
+                            accept="image/png, image/jpeg" />
+                        </label>
+                        <button type="button" class="btn btn-outline-secondary account-image-reset mb-4"
+                          onclick="resetProfilePicture()">
+                          <i class="bx bx-reset d-block d-sm-none"></i>
+                          <span class="d-none d-sm-block">Reset</span>
+                        </button>
+                        <p class="text-muted mb-0">Allowed JPG, GIF, or PNG. Max size of 800K</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card-body">
+                    <form id="formMyProfile" method="POST" onsubmit="return false">
+                      <div class="row">
+                        <div class="mb-3 col-md-6">
+                          <label for="firstName" class="form-label">First Name</label>
+                          <input class="form-control" type="text" id="firstName" name="firstName" value="" autofocus />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label for="lastName" class="form-label">Last Name</label>
+                          <input class="form-control" type="text" name="lastName" id="lastName" value="" />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label for="email" class="form-label">E-mail</label>
+                          <input class="form-control" type="text" id="email" name="email" value=""
+                            placeholder="email.address@example.com" readonly />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label for="uidElement" class="form-label">User ID (UID)</label>
+                          <input class="form-control" type="text" id="uidElement" name="uidElement" value="" readonly />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label for="birthdate" class="col-md-6 col-form-label">Birthdate</label>
+                          <div class="col-md6">
+                            <input class="form-control" type="date" value="" id="birthdate" />
+                          </div>
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                          <label class="form-label" for="gender">Gender</label>
+                          <select id="gender" class="select2 form-select" required>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                            <option value="PreferNTS">Prefer not to say</option>
+                          </select>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label class="form-label" for="phoneNumber">Phone Number</label>
+                          <div class="input-group input-group-merge">
+                            <span class="input-group-text">PHI (+63)</span>
+                            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control"
+                              placeholder="9025550111" maxlength="10" required />
+                          </div>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label for="city" class="form-label">City / Municipality</label>
+                          <input type="text" class="form-control" id="city" name="city" placeholder="Batangas City"
+                            required />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label for="zipCode" class="form-label">Zip Code</label>
+                          <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="4200"
+                            maxlength="4" required />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label for="province" class="form-label">Province</label>
+                          <input class="form-control" type="text" id="province" name="province" placeholder="Batangas"
+                            required />
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label for="region" class="form-label">Region</label>
+                          <select id="region" class="select2 form-select" required>
+                            <option value="">Select Region</option>
+                            <option value="ncr">National Capital Region (NCR)</option>
+                            <option value="car">Cordillera Administrative Region (CAR)</option>
+                            <option value="reg1">Ilocos Region (Region 1)</option>
+                            <option value="reg2">Cagayan Valley (Region 2)</option>
+                            <option value="reg3">Central Luzon (Region 3)</option>
+                            <option value="reg4A">CALABARZON (Region 4-A)</option>
+                            <option value="reg4B">MIMAROPA (Region 4-B)</option>
+                            <option value="reg5">Bicol Region (Region 5)</option>
+                            <option value="reg6">Western Visayas (Region 6)</option>
+                            <option value="reg7">Central Visayas (Region 7)</option>
+                            <option value="reg8">Eastern Visayas (Region 8)</option>
+                            <option value="reg9">Zamboanga Peninsula (Region 9)</option>
+                            <option value="reg10">Northen Mindanao (Region 10)</option>
+                            <option value="reg11">Davao Region (Region 11)</option>
+                            <option value="reg12">SOCCKSARGEN (Region 12)</option>
+                            <option value="reg13">CARAGA (Region 13)</option>
+                            <option value="barmm">Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)</option>
+                          </select>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label for="organization" class="form-label">Organization / Institution</label>
+                          <input type="text" class="form-control" id="organization" name="organization"
+                            placeholder="Batangas State University" required />
+                        </div>
+                      </div>
+                      <div class="mt-2">
+                        <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                        <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- /Account -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- / Content -->
+
+          <div class="content-backdrop fade"></div>
+        </div>
+        <!-- Content wrapper -->
+      </div>
+      <!-- / Layout page -->
+    </div>
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+  </div>
+  <!-- / Layout wrapper -->
+  <!--Complete Modal-->
+  <div class="modal fade" id="CompleteModal" tabindex="-1" aria-labelledby="CompleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="CompleteModalLabel">✅ Data Saved to Firebase</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p id="CompleteModalMessage"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Error Modal -->
+  <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="errorModalLabel">⚠️ERROR</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p id="errorModalMessage"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core JS -->
+  <!-- build:js assets/vendor/js/core.js -->
+  <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+  <script src="../assets/vendor/libs/popper/popper.js"></script>
+  <script src="../assets/vendor/js/bootstrap.js"></script>
+  <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+  <script src="../assets/vendor/js/menu.js"></script>
+  <!-- endbuild -->
+
+  <!-- Vendors JS -->
+
+  <!-- Main JS -->
+  <script src="../assets/js/main.js"></script>
+
+  <!-- Page JS -->
+  <script src="../assets/js/pages-account-settings-account.js"></script>
+
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
+        import { getDatabase, ref, set, get, update } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+        import { getAuth, signOut, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"; // Import Firebase Authentication
+        import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-storage.js"; // Import Firebase Storage
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyD61AGO2ZR8plHMvFUCLrCiCe9pB57XaB8",
+          authDomain: "login-capstone-d6ae0.firebaseapp.com",
+          databaseURL:"https://login-capstone-d6ae0-default-rtdb.asia-southeast1.firebasedatabase.app/",
+          projectId: "login-capstone-d6ae0",
+          storageBucket: "login-capstone-d6ae0.appspot.com",
+          messagingSenderId: "864644609365",
+          appId: "1:864644609365:web:e8759207e02745ed83ebdc",
+          measurementId: "G-TQP6RYWEG7"
+        };
+  
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+        const auth = getAuth(); // Initialize Firebase Authentication
+        const user = auth.currentUser;
+        const storage = getStorage(app);
+
+        function showCompleteModal(successMessage) {
+          const CompleteModal = new bootstrap.Modal(document.getElementById("CompleteModal"));
+          const CompleteModalMessage = document.getElementById("CompleteModalMessage");
+          CompleteModalMessage.textContent = successMessage;
+          CompleteModal.show();
+        }
+
+          // Function to display the error modal
+        function showErrorModal(errorMessage) {
+          const errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
+          const errorModalMessage = document.getElementById("errorModalMessage");
+          errorModalMessage.textContent = errorMessage;
+          errorModal.show();
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+  const fileInput = document.getElementById("upload");
+  const imageElement = document.getElementById("userPhotoDisplay2");
+  const uidElement = document.getElementById("uidElement").value;
+  
+  if (fileInput && imageElement) {
+  fileInput.addEventListener("change", (event) => {
+    const input = event.target;
+    const user = auth.currentUser;
+    const file = input.files[0];
+    
+    if (user && file) {
+  const sRef = storageRef(storage, `profilePictures/${user.uid}`);
+
+  uploadBytes(sRef, file)
+    .then((snapshot) => {
+      console.log("Profile picture uploaded successfully");
+
+      // Get the download URL of the uploaded image
+      getDownloadURL(sRef)
+        .then((downloadURL) => {
+          // Store the download URL in the database
+          const userRef = ref(database, `users/${user.uid}`);
+          update(userRef, { photoURL: downloadURL })
+            .then(() => {
+              console.log("Profile picture URL updated in the database");
+              imageElement.src = downloadURL;
+            })
+            .catch((error) => {
+              console.error("Error updating profile picture URL in the database: ", error);
+            });
+        })
+        .catch((error) => {
+          console.error("Error getting download URL: ", error);
+        });
+    })
+    .catch((error) => {
+      console.error("Error uploading profile picture: ", error);
+    });
+} else {
+  console.log("User or file not found");
+}
+  });
+}
+
+});
+
+        function updateFormFields(userData) {
+          const firstNameInput = document.getElementById('firstName');
+          const lastNameInput = document.getElementById('lastName');
+          const emailInput = document.getElementById('email');
+          const uidElement = document.getElementById('uidElement');
+          const birthdateInput = document.getElementById('birthdate');
+          const genderInput = document.getElementById('gender');
+          const phoneNumberInput = document.getElementById('phoneNumber');
+          const cityInput = document.getElementById('city');
+          const zipCodeInput = document.getElementById('zipCode');
+          const provinceInput = document.getElementById('province');
+          const regionInput = document.getElementById('region');
+          const organizationInput = document.getElementById('organization');
+
+          firstNameInput.value = userData.firstName || '';
+          lastNameInput.value = userData.lastName || '';
+          emailInput.value = userData.email || '';
+          uidElement.value = userData.uid || '';
+          birthdateInput.value = userData.birthdate || '';
+          genderInput.value = userData.gender || '';
+          phoneNumberInput.value = userData.phoneNumber || '';
+          cityInput.value = userData.city || '';
+          zipCodeInput.value = userData.zipCode || '';
+          provinceInput.value = userData.province || '';
+          regionInput.value = userData.region || '';
+          organizationInput.value = userData.organization || '';
+        }
+
+        // Function to populate the form fields with user data
+        function populateFormFields(userData) {
+          const firstNameInput = document.getElementById('firstName');
+          const lastNameInput = document.getElementById('lastName');
+          const emailInput = document.getElementById("email");
+          const birthdateInput = document.getElementById("birthdate");
+          const genderInput = document.getElementById("gender");
+          const phoneNumberInput = document.getElementById("phoneNumber");
+          const cityInput = document.getElementById("city");
+          const zipCodeInput = document.getElementById("zipCode");
+          const provinceInput = document.getElementById("province");
+          const regionInput = document.getElementById("region");
+          const organizationInput = document.getElementById("organization");
+
+          if (userData) {
+            firstNameInput.value = userData.firstName || '';
+            lastNameInput.value = userData.lastName || '';
+            emailInput.value = userData.email || '';
+            birthdateInput.value = userData.birthdate || '';
+            genderInput.value = userData.gender || '';
+            phoneNumberInput.value = userData.phoneNumber || '';
+            cityInput.value = userData.city || '';
+            zipCodeInput.value = userData.zipCode || '';
+            provinceInput.value = userData.province || '';
+            regionInput.value = userData.region || '';
+            organizationInput.value = userData.organization || '';
+          }
+        }
+
+        document.getElementById("logout").addEventListener("click", () => {
+  
+        // Sign out the current user
+          signOut(auth)
+            .then(() => {
+              // Sign-out successful.
+              // You can redirect the user to a sign-in page or perform other actions here.
+              console.log("User signed out.");
+              window.location.href = "auth-login-basic.html"; // Redirect to the login page (replace with your desired URL)
+            })
+            .catch((error) => {
+              // An error happened.
+              console.error("Error signing out:", error);
+            });
+        });
+        auth.onAuthStateChanged((user) => {
+    if (user) {
+      const userName = user.displayName;
+      const userEmail = user.email;
+      const userDisplay = document.getElementById("userDisplay");
+      const userNameDisplay = userDisplay.querySelector("#userNameDisplay");
+      const userEmailDisplay = userDisplay.querySelector("#userEmailDisplay"); // Add this line
+      const userPhotoURL = user.photoURL;
+      const userPhotoDisplay = document.getElementById("userPhotoDisplay");
+      const userPhotoDisplay1 = document.getElementById("userPhotoDisplay1");
+      const userPhotoDisplay2 = document.getElementById("userPhotoDisplay2");
+      const greetingElement = document.getElementById('greeting');
+      const firstNameInput = document.getElementById('firstName');
+      const lastNameInput = document.getElementById('lastName');
+      const emailInput = document.getElementById("email");
+
+      const userRef = ref(database, `users/${user.uid}`);
+      get(userRef)  
+        .then((snapshot) => {
+          const userData = snapshot.val();
+          populateFormFields(userData);
+
+          // Listen for changes in form fields and update data in real-time
+          form.addEventListener("input", (event) => {
+            const fieldId = event.target.id;
+            const newValue = event.target.value;
+
+            // Update the corresponding field in userData
+            userData[fieldId] = newValue;
+
+            // Update the data in the database in real-time
+            set(userRef, userData)
+              .then(() => {
+                // Data successfully updated in Firebase
+              })
+              .catch((error) => {
+                // Handle errors
+                console.error("Error updating data in Firebase: ", error);
+              });
+          });
+        })
+        .catch((error) => {
+          console.error("Error retrieving data from Firebase: ", error);
+          // Handle the error appropriately
+        });
+
+      if (userName) {
+        userNameDisplay.textContent = userName;
+      } else if (userEmail) {
+        const atIndex = userEmail.indexOf("@");
+        if (atIndex !== -1) {
+          const emailPrefix = userEmail.substring(0, atIndex);
+          userNameDisplay.textContent = emailPrefix;
+        } else {
+          userNameDisplay.textContent = userEmail;
+        }
+      }
+      if (userEmailDisplay) {
+        // Display the user's email
+        userEmailDisplay.textContent = userEmail;
+      }
+      if (userPhotoURL) {
+        // Display the Firebase profile picture if available
+        if (userPhotoDisplay) {
+          userPhotoDisplay.src = userPhotoURL;
+        }
+        if (userPhotoDisplay1) {
+          userPhotoDisplay1.src = userPhotoURL;
+        }
+        if (userPhotoDisplay2) {
+          userPhotoDisplay2.src = userPhotoURL;
+        }
+      } else {
+  // User's Firebase profile picture is not available, try to fetch Google profile picture
+  const googleProfilePicture = user.providerData.find((provider) => {
+    return provider.providerId === "google.com";
+  }).photoURL;
+
+        // User's Firebase profile picture is not available, try to fetch Google profile picture
+        if (googleProfilePicture){
+        if (userPhotoDisplay) {
+          userPhotoDisplay.src = googleProfilePicture; // Display Google profile picture
+        }
+        if (userPhotoDisplay1) {
+          userPhotoDisplay1.src = googleProfilePicture; // Display Google profile picture
+        }
+        if (userPhotoDisplay2) {
+          userPhotoDisplay2.src = googleProfilePicture; // Display Google profile picture
+        }
+      } else {
+    // If neither Firebase nor Google profile pictures are available, set a default image
+    const defaultImageSrc = "../assets/img/avatars/avatar.png"; // Replace with your default image path
+    if (userPhotoDisplay) {
+      userPhotoDisplay.src = defaultImageSrc;
+    }
+    if (userPhotoDisplay1) {
+      userPhotoDisplay1.src = defaultImageSrc;
+    }
+    if (userPhotoDisplay2) {
+      userPhotoDisplay2.src = defaultImageSrc;
+    }
+      }
+    }
+
+      const googleDisplayName = user.providerData.find((provider) => {
+        return provider.providerId === "google.com";
+      }).displayName;
+
+      const googleNames = googleDisplayName.split(' ');
+
+      let firstName = "";
+      let lastName = "";
+
+      if (googleNames.length > 0) {
+        firstName = googleNames.slice(0, -1).join(" "); 
+        if (googleNames.length > 1){
+          lastName = googleNames.slice(-1).join(" ");
+        }
+      }else if (userName) {
+          // If Google display name is not available, use Firebase display name
+          const firebaseNames = userName.split(' ');
+          if (firebaseNames.length > 0) {
+            firstName = firebaseNames.slice(0, -1).join(" ");
+            lastName = firebaseNames.slice(-1).join(" ");
+          }
+        }  
+      if (firstNameInput) {
+        firstNameInput.value = firstName;
+      }
+      if (lastNameInput) {
+        lastNameInput.value = lastName;
+      }
+      if (emailInput) {
+        emailInput.value = userEmail;
+      }
+      if (greetingElement) {
+        greetingElement.textContent = `Congratulations, ${firstName}! 🎉`;
+      }
+
+      const userUID = user.uid;
+
+      // You can also display the UID on the webpage
+      const uidElement = document.getElementById("uidElement");
+      if (uidElement) {
+        uidElement.value = userUID;
+      }
+    } else {
+      // No user is signed in, redirect to the login page
+      window.location.href = "auth-login-basic.html"; // Replace with your login page URL
+    }
+  });
+const form = document.getElementById("formMyProfile");
+form.addEventListener("submit", (event) => {
+  event.preventDefault(); // Prevent the default form submission behavior
+
+  // Capture form data
+  const firstName = document.getElementById("firstName").value;
+  const lastName = document.getElementById("lastName").value;
+  const email = document.getElementById("email").value;
+  const uidElement = document.getElementById("uidElement").value;
+  const birthdate = document.getElementById("birthdate").value;
+  const gender = document.getElementById("gender").value;
+  const phoneNumber = document.getElementById("phoneNumber").value;
+  const city = document.getElementById("city").value;
+  const zipCode = document.getElementById("zipCode").value;
+  const province = document.getElementById("province").value;
+  const region = document.getElementById("region").value;
+  const organization = document.getElementById("organization").value;
+
+  // Define the data you want to save to Firebase
+  const userData = {
+    firstName,
+    lastName,
+    email,
+    uid: uidElement,
+    birthdate,
+    gender,
+    phoneNumber,
+    city,
+    zipCode,
+    province,
+    region,
+    organization,
+    // Add other form fields...
+  };
+
+  // Push data to Firebase Database
+
+  const userRef = ref(database, "users/" + uidElement);   // Reference to the user's node using their unique UID
+  set(userRef, userData)
+    .then(() => {
+      // Data successfully saved to Firebase
+      showCompleteModal("Data successfully saved to Firebase.");
+      updateFormFields(userData);
+    })
+    .catch((error) => {
+      // Handle errors
+      const errorMessage = "Error saving data to Firebase. Please try again later.";
+      // Show the error modal
+      showErrorModal(errorMessage);
+    });
+    
+});
+
+      </script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+/* Default styles for light theme */
+body.light-theme {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+/* Styles for dark theme */
+body.dark-theme {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+/* Additional dark theme styles for specific elements */
+.dark-theme .navbar {
+    background-color: #222222;
+    color: #ffffff;
+}
+
+.dark-theme .sidebar {
+    background-color: #111111;
+    color: #ffffff;
+}
+
+/* Add more styles as needed */
