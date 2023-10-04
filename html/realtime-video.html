@@ -633,11 +633,55 @@
         });
 
         // Dominant Emotion Data
-        const emotionData = {
+        let emotionData = {
             happy: 0,
             neutral: 0,
             angry: 0
         };
+// Function to fetch existing emotion data
+async function fetchExistingData() {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        const userEmail = user.email;
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+        const day = currentDate.getDate().toString().padStart(2, '0');
+        const dateString = `${year}-${month}-${day}`;
+        const dateRef = ref(database, dateString + "/" + userEmail.split('@')[0]);
+
+        get(dateRef)
+          .then((snapshot) => {
+            const existingData = snapshot.val();
+            if (existingData && existingData.emotions) {
+              emotionData = existingData.emotions;
+              updateUI();
+            }
+            resolve(); // Resolve the promise when data is fetched
+          })
+          .catch((error) => {
+            console.error("Error fetching existing data from Firebase:", error);
+            reject(error); // Reject the promise if there's an error
+          })
+          .finally(() => unsubscribe()); // Unsubscribe from the auth state changes
+      } else {
+        console.warn("User is not signed in. Cannot fetch existing data.");
+        resolve(); // Resolve the promise when the user is not signed in
+        unsubscribe(); // Unsubscribe from the auth state changes
+      }
+    });
+  });
+}
+
+// Call fetchExistingData when the page loads (in case the user is already signed in)
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    await fetchExistingData();
+  } catch (error) {
+    console.error("An error occurred:", error);
+  }
+});
 
         function updateEmotionData(emotion) {
             switch (emotion) {
@@ -684,39 +728,50 @@
         });
         
        // Function to update the emotion counts in Firebase Realtime Database with timestamps per day
-      function updateFirebaseEmotionCounts(emotionCounts) {
-        // Get the user's Firebase email
-        const userEmail = auth.currentUser.email;
+function updateFirebaseEmotionCounts(emotionCounts) {
+  // Get the user's Firebase email
+  const userEmail = auth.currentUser.email;
 
-        // Remove the "@gmail.com" portion from the email
-        const emailWithoutDomain = userEmail.split('@')[0];
+  // Reference to the database
+  const database = getDatabase(app);
 
-        // Reference to the database
-        const database = getDatabase(app);
+  // Get the current date
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+  const day = currentDate.getDate().toString().padStart(2, '0');
 
-        // Get the current date
-        const currentDate = new Date();
+  const dateString = `${year}-${month}-${day}`;
 
-        // Convert the date to a string in the format "YYYY-MM-DD"
-        const dateString = currentDate.toISOString().split('T')[0];
+  console.log('Current date:', currentDate);
+  console.log('Formatted date string:', dateString);
 
-        // Reference to the database node with the current date as the parent node
-        const dateRef = ref(database, dateString + "/" + userEmail.split('@')[0]);
+  // Reference to the database node with the current date as the parent node
+  const dateRef = ref(database, dateString + "/" + userEmail.split('@')[0]);
 
-        // Create an object that includes both the date and emotion counts
-        const emotionData = {
-          emotions: emotionCounts
-        };
+  // Get the existing data for the same date
+  get(dateRef)
+    .then((snapshot) => {
+      const existingData = snapshot.val();
 
-        // Update the Firebase database with the emotion counts under the current date
-        set(dateRef, emotionData)
-          .then(() => {
-            console.log("Emotion counts updated in Firebase for date:", dateString);
-          })
-          .catch((error) => {
-            console.error("Error updating Firebase:", error);
-          });
-      }
+      // If there's existing data, update it; otherwise, create new data
+      const updatedEmotionData = existingData
+        ? { ...existingData, emotions: emotionCounts }
+        : { emotions: emotionCounts };
+
+      // Update the Firebase database with the emotion counts under the current date
+      set(dateRef, updatedEmotionData)
+        .then(() => {
+          console.log("Emotion counts updated in Firebase for date:", dateString);
+        })
+        .catch((error) => {
+          console.error("Error updating Firebase:", error);
+        });
+    })
+    .catch((error) => {
+      console.error("Error fetching existing data from Firebase:", error);
+    });
+}
 
         </script>
         <script src="https://sdk.morphcast.com/mphtools/v1.1/mphtools.js" data-config="compatibilityUI, compatibilityAutoCheck"></script>
