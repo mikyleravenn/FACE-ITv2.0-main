@@ -240,18 +240,16 @@
 
           <!-- HTML -->
           <!-- / Navbar -->
-          <div class="container">
-            <!-- Start Analysis button -->
-            <button id="startAnalysisButton">Start Analysis</button>
-            <div class="row">
-                <div class="col-lg-12">
+          <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-12 justify-content-center align-items-center">
                     <div class="card">
                         <div class="row">
-                            <div class="col-sm-7">
+                            <div class="col-sm-12 text-center"> <!-- Center the entire content -->
                                 <div class="card-body">
                                     <!-- Canvas for webcam display -->
-                                    <canvas class="mx-auto" id="canvas"></canvas>
-                                    <div id="faceTrackerContainer">
+                                    <canvas class="mx-auto" id="canvas" style="max-width: 100%; height: auto;"></canvas>
+                                    <div id="faceTrackerContainer" class="mt-3">
                                         <div id="faceTracker"></div>
                                     </div>
                                 </div>
@@ -260,50 +258,92 @@
                     </div>
                 </div>
             </div>
-            <!-- Stop Analysis button (initially hidden) -->
-            <button id="stopAnalysisButton">Stop Analysis</button>
-        </div>
-        
-        
-
-        <!-- Dominant Emotion -->
-        <div>
-          <p style="font-size:20px; text-align: center;">Dominant Emotion:</p>
-          <p id="emotionText"></p>
-          <hr class="solid" style="width:100%">
-        </div>
-
-        <!-- Emotion Bar -->
-        <div id="emotionsContainer" class="d-flex flex-wrap">
-          <div class="bar-container" id="happyBar">
-              <div class="progress-bar-container">
-                  <div class="progress-bar-indicator" id="happyIndicator"></div>
+            <div class="text-center mt-3">
+                <div class="demo-inline-spacing">
+                    <button type="button" class="btn btn-primary" id="startAnalysisButton">
+                        <span class="tf-icons bx bx-play"></span>&nbsp; Start Scanning
+                    </button>
+                    <button type="button" class="btn btn-outline-danger" id="stopAnalysisButton">
+                        <span class="tf-icons bx bx-pause"></span>&nbsp; Pause Scanning
+                    </button>
+                </div>
+            </div>
+        </div> 
+        <div class="container-xxl flex-grow-1 container-p-y">
+          <div class="row justify-content-center align-items-center">
+              <div class="col-lg-12 text-center">
+                  <div class="card">
+                      <div class="card-body">
+                          <div class="demo-inline-spacing mt-3">
+                              <ul class="list-group-item">
+                                <span class="fw-bolder">EMOTION COUNTER</span>
+                                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                                      <div class="d-flex align-items-center">
+                                          <i class="bx bxs-happy-beaming me-2"></i>
+                                          <span class="fw-bold">Happy</span>
+                                      </div>
+                                      <span class="badge bg-success" id="happyCount"></span>
+                                  </li>
+                                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                                      <div class="d-flex align-items-center">
+                                          <i class="bx bxs-confused me-2"></i>
+                                          <span class="fw-bold">Neutral</span>
+                                      </div>
+                                      <span class="badge bg-warning" id="neutralCount"></span>
+                                  </li>
+                                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                                      <div class="d-flex align-items-center">
+                                          <i class="bx bxs-angry me-2"></i>
+                                          <span class="fw-bold">Angry</span>
+                                      </div>
+                                      <span class="badge bg-danger" id="angryCount"></span>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
               </div>
-              <span class="barName mt-1">Happy</span>
           </div>
-          <div class="bar-container" id="neutralBar">
-              <div class="progress-bar-container">
-                  <div class="progress-bar-indicator" id="neutralIndicator"></div>
+      </div>       
+    <div class="container-xxl flex-grow-1 container-p-y">
+      <div class="row justify-content-center align-items-center">
+          <div class="col-lg-12 text-center">
+              <div class="card">
+                  <div class="card-body">
+                    <div class="demo-inline-spacing mt-3 text-center">
+                      <ul class="list-group-item">
+                          <span class="fw-bolder">SCANNED EMOTION</span>
+                          <div class="py-3">
+                            <h1 class="text-muted mb-0" id="emotionText"></h1>
+                          </div>
+                          <hr class="solid" style="width:100%">
+                          <div id="emotionsContainer" class="d-flex flex-wrap">
+                              <div class="bar-container" id="happyBar">
+                                  <div class="progress-bar-container">
+                                      <div class="progress-bar-indicator" id="happyIndicator"></div>
+                                  </div>
+                                  <span><i class="bx bxs-happy-beaming me-2"></i>Happy</span>
+                              </div>
+                              <div class="bar-container" id="neutralBar">
+                                  <div class="progress-bar-container">
+                                      <div class="progress-bar-indicator" id="neutralIndicator"></div>
+                                  </div>
+                                  <span><i class="bx bxs-confused me-2"></i>Neutral</span>
+                              </div>
+                              <div class="bar-container" id="angryBar">
+                                  <div class="progress-bar-container">
+                                      <div class="progress-bar-indicator" id="angryIndicator"></div>
+                                  </div>
+                                  <span><i class="bx bxs-angry me-2"></i>Angry</span>
+                              </div>
+                          </div>
+                      </ul>
+                  </div>                  
+                  </div>
               </div>
-              <span class="barName mt-1">Neutral</span>
           </div>
-          <div class="bar-container" id="angryBar">
-              <div class="progress-bar-container">
-                  <div class="progress-bar-indicator" id="angryIndicator"></div>
-              </div>
-              <span class="barName mt-1">Angry</span>
-          </div>
-          <hr class="solid" style="width:100%">
       </div>
-
-        <!-- Dominant Emotion Data -->
-        <div class="centered-content">
-          <ul>
-              <li>Happy: <span id="happyCount">0</span></li>
-              <li>Neutral: <span id="neutralCount">0</span></li>
-              <li>Angry: <span id="angryCount">0</span></li>
-          </ul>
-        </div>
+  </div>          
 
               <!-- Overlay -->
 
@@ -455,7 +495,7 @@
             video: true
           },
           video: document.createElement('video'),
-          flip: 2
+          flip: -1
         });
         
         // Define a global variable to hold the Morphcast loader
@@ -527,9 +567,10 @@
         function initializeFaceDetection() {
             window.addEventListener(CY.modules().FACE_DETECTOR.eventName, handleFaceDetectionResult);
         }
-
+        const faceTracker = document.getElementById("faceTracker");
         // Update the green square position based on face detection results
         function updateFaceTrackerPosition(faceRect) {
+
             if (faceRect) {
                 faceTracker.style.display = "block";
                 faceTracker.style.width = `${faceRect.width}px`;
@@ -540,6 +581,14 @@
                 faceTracker.style.display = "none";
             }
         }
+
+// Add event listener for face detection results
+window.addEventListener(CY.modules().FACE_DETECTOR.eventName, (evt) => {
+    const faceRect = evt.detail && evt.detail.rects && evt.detail.rects.length > 0
+        ? evt.detail.rects[0]
+        : null;
+    updateFaceTrackerPosition(faceRect);
+});
 
         // Handle face detection results
         function handleFaceDetectionResult(evt) {
